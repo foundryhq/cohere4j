@@ -29,10 +29,19 @@ public class EmbedRequest {
      */
     private String truncate;
 
+    /**
+     * input_type="search_document": Use this for texts (documents) you want to store in your vector database
+     * input_type="search_query": Use this for search queries to find the most relevant documents in your vector database
+     * input_type="classification": Use this if you use the embeddings as an input for a classification system
+     * input_type="clustering": Use this if you use the embeddings for text clustering
+     */
+    private String input_type;
+
     EmbedRequest(Builder builder) {
         this.texts = builder.texts.toArray(new String[builder.texts.size()]);
         this.model = builder.model;
         this.truncate = builder.truncate;
+        this.input_type = builder.input_type;
     }
 
     public static class Builder {
@@ -40,6 +49,7 @@ public class EmbedRequest {
         private List<String> texts = new ArrayList<>();
         private String model;
         private String truncate;
+        private String input_type;
 
         public Builder withText(String text) {
             this.texts.add(text);
@@ -53,6 +63,11 @@ public class EmbedRequest {
 
         public Builder withTruncate(String truncate) {
             this.truncate = truncate;
+            return this;
+        }
+
+        public Builder withInputType(String inputType) {
+            this.input_type = inputType;
             return this;
         }
 
