@@ -45,7 +45,7 @@ To use the library in your Maven project, follow the steps below:
 2. Add the dependency
     ```xml
     <dependency>
-        <groupId>com.github.llmjava</groupId>
+        <groupId>com.github.foundryhq</groupId>
         <artifactId>cohere4j</artifactId>
         <version>${COHERE4J_VERSION}</version>
     </dependency>
@@ -64,20 +64,20 @@ cohere.apiKey=${env:COHERE_API_KEY}
 Create an instance of `CohereClient` and submit text generation requests
 
 ```java
-import com.github.llmjava.cohere4j.*;
+import com.github.foundryhq.cohere4j.*;
 
 public class Main {
    public static void main(String[] args) {
-       CohereConfig config = CohereConfig.fromProperties("cohere.properties");
-       CohereClient client = new CohereClient.Builder().withConfig(config).build();
+      CohereConfig config = CohereConfig.fromProperties("cohere.properties");
+      CohereClient client = new CohereClient.Builder().withConfig(config).build();
 
-       String text = "tell me a joke";
-       GenerateRequest request = new GenerateRequest.Builder()
-               .withPrompt(text)
-               .withConfig(config)
-               .build();
+      String text = "tell me a joke";
+      GenerateRequest request = new GenerateRequest.Builder()
+          .withPrompt(text)
+          .withConfig(config)
+          .build();
 
-       System.out.println(client.generate(request).getTexts().get(0));
+      System.out.println(client.generate(request).getTexts().get(0));
    }
 }
 ```
